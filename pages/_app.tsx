@@ -1,7 +1,18 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import React from 'react'
+import { Layout } from '../components/Layout'
+import { FetchProvider, SessionProvider } from '../providers'
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <FetchProvider>
+      <SessionProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SessionProvider>
+    </FetchProvider>
+  )
 }
 export default MyApp

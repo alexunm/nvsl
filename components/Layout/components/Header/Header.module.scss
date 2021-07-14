@@ -1,0 +1,23 @@
+.Header {
+  position: sticky;
+  top: 54px;
+  z-index: 120;
+  background-color: var(--dark-grey);
+
+  max-width: 960px;
+  margin: 0 auto;
+
+  margin-top: 90px;
+  padding: 30px;
+
+  display: grid;
+  grid-template: auto/(1fr auto);
+  gap: 18px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  &__Wide {
+    max-width: 100%;
+    margin: 0;
+  }
+}
