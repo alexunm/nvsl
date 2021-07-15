@@ -1,0 +1,1 @@
+export const listEmptyText = 'No items found'

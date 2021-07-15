@@ -1,0 +1,24 @@
+.List {
+  position: relative;
+  display: block;
+  border-radius: 12px;
+  background-color: var(--light-grey);
+
+  &__Item {
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  }
+}
+
+.Display {
+  &--Grid {
+    width: 100%;
+    background-color: none;
+    display: grid;
+    grid-template: auto / repeat(3, 1fr);
+
+    .List__Item {
+      border-bottom: none;
+    }
+  }
+}
