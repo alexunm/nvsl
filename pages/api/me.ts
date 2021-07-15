@@ -14,5 +14,5 @@ export default async function handler(
 
   const username = req.cookies[`${CookieName}-me`]
 
-  return res.status(200).json({ success: true, data: { username: 'my-username' } })
+  return res.status(200).json({ success: true, data: { username } })
 }

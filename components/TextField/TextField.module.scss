@@ -14,8 +14,9 @@
 .Input {
   width: 100%;
   padding: 14px 17px;
-  outline: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: calc(2 * var(--space));
+  outline: none;
 
   color: #fff;
   font-family: inherit;
@@ -30,6 +31,10 @@
   &::placeholder {
     color: rgba(255, 255, 255, 0.24);
     letter-spacing: 0;
+  }
+
+  &:focus {
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 }
 .Button {
