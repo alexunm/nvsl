@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <FetchProvider>
       <SessionProvider>
         <Layout>
+          <Layout.Navigation />
           <Component {...pageProps} />
         </Layout>
       </SessionProvider>
