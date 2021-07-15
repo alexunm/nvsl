@@ -15,9 +15,11 @@ const Navigation: VFC<Props> = ({}) => {
         <div className={styles.Actions}>
           <div className={styles.Username}>{username}</div>
           <Layout.Separator vertical />
-          <Link href='/api/logout' passHref>
-            <Button>Logout</Button>
-          </Link>
+          <Button>
+            <Link href='/api/logout' passHref>
+              <a>Logout</a>
+            </Link>
+          </Button>
         </div>
       )}
     </nav>

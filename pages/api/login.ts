@@ -24,8 +24,7 @@ export default async function handler(
         serialize(`${CookieName}-me`, body.username, CookieSettings),
         serialize(CookieName, data.token, CookieSettings)]
       )
-      res.status(200).json({ success: true, data: { username: body.username } })
-      return res.status(response.status).json({ success: true, data })
+      return res.status(200).json({ success: true, data: { username: body.username } })
     } else if (response.status === 401) {
       return res.status(response.status).json({ success: false, message: 'Invalid credentials' })
     } else {

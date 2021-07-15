@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react'
+import React, { CSSProperties, FC } from 'react'
 import { classNames } from '../../utils/styles'
 import { Box } from '../Box'
 import styles from './Stack.module.scss'

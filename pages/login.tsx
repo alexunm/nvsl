@@ -14,6 +14,7 @@ const Login = () => {
   const username = useInput('')
   const password = useInput('')
 
+  const { isLoggedIn } = useSession()
   const router = useRouter()
   const { loading, data, fetch, error } = useFetch<{ username: string }>('/api/login', { method: 'POST' }, false)
   const { logIn } = useSession()
@@ -30,13 +31,17 @@ const Login = () => {
       setValidationError(error.message)
     }
   }
+
   useEffect(() => {
     if (data) {
       logIn({ username: data.username })
-      router.push('/')
     }
     return () => {}
-  }, [data])
+  }, [logIn, data])
+
+  useEffect(() => {
+    if (isLoggedIn) router.push('/')
+  }, [isLoggedIn, router])
 
   return (
     <>

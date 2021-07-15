@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
 
 const defaultState: ContextState = {
   loading: false,
@@ -7,7 +7,7 @@ const defaultState: ContextState = {
 
 export type ContextState = {
   loading: boolean
-  setLoading: (value: boolean) => void
+  setLoading: Dispatch<SetStateAction<boolean>>
 }
 const Context = createContext<ContextState>(defaultState)
-export { Context }
+export { Context };

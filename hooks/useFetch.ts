@@ -1,11 +1,13 @@
 import { useRouter } from 'next/dist/client/router';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { FetchOptions } from '../const/fetch';
 import { FetchContext } from '../providers';
 
 export type FetchResponse<T = any> = { success: boolean, message?: string, data: T }
 
-export function useFetch<T>(path: string, options: RequestInit = {}, runOnRender: boolean = true) {
+const defaultOptions = {}
+
+export function useFetch<T>(path: string, options: RequestInit = defaultOptions, runOnRender: boolean = true) {
 
   const router = useRouter()
   const { loading, setLoading } = useContext(FetchContext)
@@ -13,7 +15,7 @@ export function useFetch<T>(path: string, options: RequestInit = {}, runOnRender
   const [error, setError] = useState<string>()
   const [data, setData] = useState<T>()
 
-  const doFetch = async (data?: any) => {
+  const handleFetchData = useCallback(async (data?: any) => {
     const requestOptions = { ...FetchOptions, ...options }
     if (data) {
       requestOptions.body = JSON.stringify(data)
@@ -23,7 +25,7 @@ export function useFetch<T>(path: string, options: RequestInit = {}, runOnRender
     try {
       const response = await fetch(path, requestOptions)
 
-      if (response.status === 401)
+      if (response.status === 401 && router.route !== '/login')
         router.push('/login')
 
       const responseData: FetchResponse = await response.json()
@@ -37,13 +39,14 @@ export function useFetch<T>(path: string, options: RequestInit = {}, runOnRender
       setError(e.message)
       setLoading(false)
     }
-  }
+  }, [options, path, router, setLoading])
+
 
   useEffect(() => {
     if (runOnRender) {
-      doFetch()
+      handleFetchData()
     }
-  }, [])
+  }, [runOnRender, handleFetchData])
 
-  return { loading, fetch: doFetch, error, data }
+  return { loading, fetch: handleFetchData, error, data }
 }
