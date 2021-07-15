@@ -1,7 +1,17 @@
+@import './../../styles/variables';
+
 .Stack {
   display: flex;
+
+  > * {
+    margin: 0 calc(2 * #{$space});
+  }
 }
 
 .Vertical {
   flex-direction: column;
+
+  > * {
+    margin: calc(2 * #{$space}) 0;
+  }
 }

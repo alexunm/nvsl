@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+import { space } from '../const/style';
 
 export function classNames(...names: (string | false | undefined)[]) {
   return names.filter(n => !!n).join(' ')
@@ -10,7 +11,7 @@ export function classVariation(name: string, value: string): string {
 }
 
 function calcWithSpace(multiplier: number): string {
-  return `calc(${multiplier} * var(--space))`
+  return `calc(${multiplier} * ${space}px)`
 }
 
 export function valueWithSpaceAndPoints(prop: 'padding' | 'margin', all?: number, left?: number | string, top?: number | string, right?: number | string, bottom?: number | string): Partial<CSSProperties> {

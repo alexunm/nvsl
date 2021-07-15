@@ -1,8 +1,10 @@
+@import './../../../../styles/variables';
+
 .Header {
   position: sticky;
   top: 54px;
   z-index: 120;
-  background-color: var(--dark-grey);
+  background-color: $dark-grey;
 
   max-width: 960px;
   margin: 0 auto;

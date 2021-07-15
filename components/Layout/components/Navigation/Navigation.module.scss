@@ -1,3 +1,5 @@
+@import './../../../../styles/variables';
+
 .Navigation {
   min-height: 54px;
   position: fixed;
@@ -7,22 +9,22 @@
   width: 100%;
 
   display: flex;
-  padding: calc(2 * var(--space)) calc(5 * var(--space));
+  padding: calc(2 * #{$space}) calc(5 * #{$space});
 
-  background-color: var(--dark-grey);
+  background-color: $dark-grey;
 }
 
 .Brand {
 }
 
 .Username {
-  color: var(--blue);
+  color: $blue;
 }
 
 .Actions {
   margin-left: auto;
   display: flex;
-  gap: calc(2 * var(--space));
+  gap: calc(2 * #{$space});
 
   align-items: center;
 }

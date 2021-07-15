@@ -19,11 +19,11 @@ const listIdForItem = (item: Server) => {
 
 const listRenderForItem = (index: number, id: string, item: Server) => {
   return (
-    <Box className='Grid Grid__List-Item'>
+    <Box display='flex'>
       <div>{item.name}</div>
-      <div>
+      <Box marginLeft='auto' width={300}>
         {item.distance} <span>km</span>
-      </div>
+      </Box>
     </Box>
   )
 }
@@ -59,17 +59,17 @@ const Home = () => {
         </Box>
       </Layout.Header>
       <Layout.Section>
-        <Box marginTop={3} marginBottom={3} paddingX={5} className={`Grid Grid--Filters`}>
+        <Box marginTop={3} marginBottom={3} paddingX={5} display='flex'>
           <div>
             <Button onClick={() => sort('name')} color='yellow' active={value !== 0 && key === 'name'}>
               Name <span>{sortIndicatorForKey('name')}</span>
             </Button>
           </div>
-          <div>
+          <Box marginLeft='auto' width={300}>
             <Button onClick={() => sort('distance')} color='green' active={value !== 0 && key === 'distance'}>
               Distance <span>{sortIndicatorForKey('distance')}</span>
             </Button>
-          </div>
+          </Box>
         </Box>
         {data && (
           <List<Server>

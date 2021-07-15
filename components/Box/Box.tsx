@@ -1,4 +1,5 @@
 import { createElement, CSSProperties, FC, ReactHTML } from 'react'
+import { space } from '../../const/style'
 import { valueWithSpaceAndPoints } from '../../utils/styles'
 
 type Props = {
@@ -54,7 +55,7 @@ const Box: FC<Props> = ({ children, element, className, gap, ...props }) => {
       props.marginX || props.marginRight,
       props.marginY || props.marginBottom
     ),
-    gap: gap && `calc(${gap} * var(--space))`,
+    gap: gap && `calc(${gap} * ${space}px)`,
   }
   return createElement(element || 'div', { style, className }, children)
 }

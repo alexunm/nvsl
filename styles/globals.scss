@@ -1,5 +1,4 @@
 @import 'variables';
-@import 'grid';
 @import 'typography';
 @import 'form';
 @import 'button';
@@ -17,7 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   color: #fff;
-  background-color: var(--dark-grey);
+  background-color: $dark-grey;
 }
 
 * {

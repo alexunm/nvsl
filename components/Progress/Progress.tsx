@@ -26,7 +26,7 @@ const Progress: VFC<Props> = ({ loading }) => {
           zIndex={240}
           height={3}
           position='fixed'
-          background='var(--blue)'
+          background='#fff'
           transition='all 500ms ease'
         />
       )}
