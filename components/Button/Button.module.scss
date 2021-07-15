@@ -1,0 +1,55 @@
+.Button {
+  --background-color: transparent;
+  display: block;
+  padding: 6px;
+  border-radius: calc(2 * var(--space));
+  line-height: 18px;
+}
+
+.Active {
+  &.Style--Text {
+    background-color: var(--background-color);
+  }
+}
+
+.Disabled {
+  opacity: 0.6;
+}
+
+.Style {
+  &--Text {
+    margin: 0 -6px;
+    --background-color: var(--white-dimmed);
+  }
+  &--Fill {
+    color: #fff;
+    padding: 15px calc(3 * var(--space));
+    background-color: var(--background-color);
+  }
+}
+
+.Color {
+  &--Secondary {
+    --background-color: var(--white-dimmed);
+    &.Style--Fill {
+      --background-color: var(--light-grey);
+    }
+  }
+
+  &--Primary {
+    --background-color: var(--white-dimmed);
+    &.Style--Fill {
+      --background-color: var(--blue);
+    }
+  }
+
+  &--Yellow {
+    color: var(--yellow);
+    --background-color: var(--yellow-dimmed);
+  }
+
+  &--Green {
+    color: var(--green);
+    --background-color: var(--green-dimmed);
+  }
+}

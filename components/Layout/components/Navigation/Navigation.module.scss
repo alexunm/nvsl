@@ -1,0 +1,28 @@
+.Navigation {
+  min-height: 54px;
+  position: fixed;
+  z-index: 120;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  padding: calc(2 * var(--space)) calc(5 * var(--space));
+
+  background-color: var(--dark-grey);
+}
+
+.Brand {
+}
+
+.Username {
+  color: var(--blue);
+}
+
+.Actions {
+  margin-left: auto;
+  display: flex;
+  gap: calc(2 * var(--space));
+
+  align-items: center;
+}
