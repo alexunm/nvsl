@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { HTMLAttributes, VFC } from 'react'
 import { InputProps } from '../../type/input'
 import { classNames } from '../../utils/styles'
 import styles from './TextField.module.scss'
@@ -8,6 +8,7 @@ type Props = {
   placeholder?: string
   type?: 'text' | 'number' | 'password'
   clearable?: boolean
+  required?: boolean
 } & InputProps
 
 const TextField: VFC<Props> = ({ label, clearable, ...props }) => {

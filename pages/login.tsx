@@ -8,7 +8,6 @@ import { TextField } from '../components/TextField'
 import { useFetch } from '../hooks/useFetch'
 import { useInput } from '../hooks/useInput'
 import { useSession } from '../hooks/useSession'
-import { loginSchema } from '../utils/validation'
 
 const Login = () => {
   const username = useInput('')
@@ -23,10 +22,18 @@ const Login = () => {
 
   const handleLogIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     const data = { username: username.value, password: password.value }
+    if (!username.value || username.value === '') {
+      setValidationError('Username is required')
+      return
+    }
+    if (!password.value || password.value === '') {
+      setValidationError('Password is required')
+      return
+    }
     try {
-      const value = await loginSchema.validateAsync(data)
-      await fetch(value)
+      await fetch(data)
     } catch (error) {
       setValidationError(error.message)
     }
@@ -53,9 +60,9 @@ const Login = () => {
             <Stack vertical>
               <Stack align='flex-end'>
                 {/* username */}
-                <TextField label='Username' {...username} />
+                <TextField label='Username' {...username} required />
                 {/* password */}
-                <TextField label='Password' type='password' {...password} />
+                <TextField label='Password' type='password' {...password} required />
                 {/* submit */}
                 <fieldset>
                   <Button type='submit' style='fill' color='primary' disabled={loading}>

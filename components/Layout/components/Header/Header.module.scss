@@ -12,9 +12,9 @@
   margin-top: 90px;
   padding: 30px;
 
-  display: grid;
-  grid-template: auto/(1fr auto);
+  display: flex;
   gap: 18px;
+  justify-content: space-between;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 

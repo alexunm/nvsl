@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { VFC } from 'react'
 import { useSession } from '../../../../hooks/useSession'
 import { Button } from '../../../Button'
+import { Stack } from '../../../Stack'
 import { Layout } from '../../Layout'
 import styles from './Navigation.module.scss'
 
@@ -13,13 +14,13 @@ const Navigation: VFC<Props> = ({}) => {
       <div>NVSL</div>
       {isLoggedIn && (
         <div className={styles.Actions}>
-          <div className={styles.Username}>{username}</div>
-          <Layout.Separator vertical />
-          <Button>
+          <Stack align='center'>
+            <div className={styles.Username}>{username}</div>
+            <Layout.Separator vertical />
             <Link href='/api/logout' passHref>
               <a>Logout</a>
             </Link>
-          </Button>
+          </Stack>
         </div>
       )}
     </nav>

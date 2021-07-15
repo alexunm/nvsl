@@ -6,6 +6,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  res.setHeader('Set-Cookie', serialize(CookieName, '', { httpOnly: true, maxAge: -1 }))
+  res.setHeader('Set-Cookie', serialize(CookieName, '', { sameSite: 'lax', httpOnly: true, maxAge: -1 }))
   res.status(200).redirect('/login')
 }
