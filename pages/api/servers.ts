@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { CookieName, FetchOptions } from '../../const/fetch';
-import { ResponseData } from '../../type/api';
-
-export type Server = { name: string, distance: number }
+import { ResponseData, Server } from '../../type/api';
 
 export default async function handler(
   req: NextApiRequest,

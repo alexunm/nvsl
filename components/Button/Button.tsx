@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, MouseEvent } from 'react'
+import React, { ButtonHTMLAttributes, FC, MouseEvent } from 'react'
 import { classNames, classVariation } from '../../utils/styles'
 import styles from './Button.module.scss'
 

@@ -27,3 +27,19 @@ export function valueWithSpaceAndPoints(prop: 'padding' | 'margin', all?: number
     props[`${prop}Bottom`] = typeof bottom === 'number' ? calcWithSpace(bottom) : bottom
   return props
 }
+
+/**
+ * @name sortIndicatorForValue
+ * @param value 0 | 1 | -1
+ * @description Returns a symbol (○ | ↓ | ↑) based on the provided value (0 | 1 | -1)
+ */
+export const sortIndicatorForValue = (value: 0 | 1 | -1) => {
+  switch (value) {
+    case 1:
+      return '↓'
+    case -1:
+      return '↑'
+    default:
+      return '○'
+  }
+}

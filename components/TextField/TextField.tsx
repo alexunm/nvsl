@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import React, { VFC } from 'react'
 import { InputProps } from '../../type/input'
 import { classNames } from '../../utils/styles'
 import styles from './TextField.module.scss'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box } from '../components/Box'
 import { Button } from '../components/Button'
 import { Layout } from '../components/Layout'
@@ -7,45 +7,36 @@ import { TextField } from '../components/TextField'
 import { useDebounce } from '../hooks/useDebounce'
 import { useFetch } from '../hooks/useFetch'
 import { useInput } from '../hooks/useInput'
-import { Server } from './api/servers'
+import { useSort } from '../hooks/useSort'
+import { sortIndicatorForValue } from '../utils/styles'
+import { Server } from './../type/api'
 
 type Keys = 'name' | 'distance'
+
+const listIdForItem = (item: Server) => {
+  return `${item.name}-${item.distance}`
+}
+
+const listRenderForItem = (index: number, id: string, item: Server) => {
+  return (
+    <Box className='Grid Grid__List-Item'>
+      <div>{item.name}</div>
+      <div>
+        {item.distance} <span>km</span>
+      </div>
+    </Box>
+  )
+}
 
 const Home = () => {
   const { data } = useFetch<Server[]>('/api/servers')
 
-  const [sortKey, setSortKey] = useState<Keys>()
-  const [sortState, setSortState] = useState<0 | 1 | -1>(0)
-
   const search = useInput('')
   const debouncedSearch = useDebounce(search.value)
+  const { value, key, sort } = useSort<Keys>()
 
-  const getSortStateForKey = (key: string) => {
-    return sortKey === key ? sortState : 0
-  }
-
-  const sortMarkupForKey = (key: Keys) => {
-    const state = getSortStateForKey(key)
-    switch (state) {
-      case 1:
-        return '↓'
-      case -1:
-        return '↑'
-      default:
-        return '○'
-    }
-  }
-
-  const sort = (key: Keys) => {
-    let newState: 0 | 1 | -1 = 1
-    if (key !== sortKey) {
-      setSortKey(key)
-    } else {
-      if (sortState === 1) newState = -1
-      if (sortState === -1) newState = 0
-      if (sortState === 0) newState = 1
-    }
-    setSortState(newState)
+  const sortIndicatorForKey = (refKey: Keys) => {
+    return refKey === key ? sortIndicatorForValue(value) : '○'
   }
 
   const filter = (s: Server) => {
@@ -56,23 +47,8 @@ const Home = () => {
 
   const sorter = (a: Server, b: Server) => {
     let sortValue = 0
-    if (sortKey) sortValue = a[sortKey] < b[sortKey] ? 1 : -1
-    return sortValue * sortState
-  }
-
-  const listIdForItem = (item: Server) => {
-    return `${item.name}-${item.distance}`
-  }
-
-  const listRenderForItem = (index: number, id: string, item: Server) => {
-    return (
-      <Box className='Grid Grid__List-Item'>
-        <div>{item.name}</div>
-        <div>
-          {item.distance} <span>km</span>
-        </div>
-      </Box>
-    )
+    if (key) sortValue = a[key] < b[key] ? 1 : -1
+    return sortValue * value
   }
 
   return (
@@ -85,13 +61,13 @@ const Home = () => {
       <Layout.Section>
         <Box marginTop={3} marginBottom={3} paddingX={5} className={`Grid Grid--Filters`}>
           <div>
-            <Button onClick={() => sort('name')} color='yellow' active={sortState !== 0 && sortKey === 'name'}>
-              Name <span>{sortMarkupForKey('name')}</span>
+            <Button onClick={() => sort('name')} color='yellow' active={value !== 0 && key === 'name'}>
+              Name <span>{sortIndicatorForKey('name')}</span>
             </Button>
           </div>
           <div>
-            <Button onClick={() => sort('distance')} color='green' active={sortState !== 0 && sortKey === 'distance'}>
-              Distance <span>{sortMarkupForKey('distance')}</span>
+            <Button onClick={() => sort('distance')} color='green' active={value !== 0 && key === 'distance'}>
+              Distance <span>{sortIndicatorForKey('distance')}</span>
             </Button>
           </div>
         </Box>
