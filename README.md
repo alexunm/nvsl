@@ -13,3 +13,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 // run tests
 yarn test
 ```
+
+.env
+```
+ENDPOINT - endpoint for the api requests
+```
